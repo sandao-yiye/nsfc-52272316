@@ -1,0 +1,28 @@
+.hero h1 {
+  max-width: none;
+  font-size: clamp(2.25rem, 4.25vw, 3.65rem);
+  line-height: 1.26;
+}
+.hero h1 span {display: block}
+.hero-kicker {letter-spacing: .12em}
+.overview-copy > p {max-width: 36em}
+.overview-copy > p + p {margin-top: .85rem}
+#results .result-card > .text-link {margin-top: auto; padding-top: .75rem}
+#results .result-card .entry-status {margin-top: .4rem; padding-top: 0}
+#main:focus {outline: none}
+@media(max-width: 740px) {
+  .hero h1 {font-size: clamp(1.95rem, 7.4vw, 3.1rem); letter-spacing: .015em}
+  .hero-kicker {font-size: .85rem}
+  .header-inner {position: relative}
+  .js .site-nav {
+    position: absolute;
+    left: -1rem;
+    right: -1rem;
+    top: 100%;
+    width: auto;
+    padding-inline: 1rem;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 .3rem .5rem rgb(18 36 58 / .07);
+  }
+}

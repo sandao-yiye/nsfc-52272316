@@ -1,0 +1,172 @@
+.nsfc-p-section {
+  --nsfc-p-ink: var(--ink, #173b37);
+  --nsfc-p-muted: var(--muted, #465d59);
+  --nsfc-p-green: var(--green, #185a4a);
+  --nsfc-p-border: var(--line, #c9d2ca);
+  color: var(--nsfc-p-ink);
+  margin-block: clamp(2.5rem, 6vw, 5rem);
+  scroll-margin-block-start: 2rem;
+}
+.nsfc-p-section *, .nsfc-p-section *::before, .nsfc-p-section *::after { box-sizing: border-box; }
+.nsfc-p-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem; }
+.nsfc-p-head h2 { margin: 0; color: inherit; font-family: var(--serif, inherit); font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.3; }
+.nsfc-p-head > span { color: var(--nsfc-p-muted); font-size: .95rem; }
+.nsfc-p-columns { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(1rem, 2vw, 2.25rem); align-items: start; }
+.nsfc-p-viewer { min-width: 0; container-type: inline-size; border: 1px solid var(--nsfc-p-border); background: #fff; }
+.nsfc-p-screen { background: #ecf0ed; }
+.nsfc-p-picture-link { display: block; cursor: zoom-in; touch-action: pan-y pinch-zoom; }
+.nsfc-p-picture { display: block; margin: 0; width: 100%; height: auto; aspect-ratio: 1800/864; object-fit: contain; }
+.nsfc-p-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem clamp(.8rem, 4cqi, 1.55rem); border-block: 1px solid var(--nsfc-p-border); }
+.nsfc-p-counter, .nsfc-p-no { font-variant-numeric: tabular-nums; color: var(--nsfc-p-green); font-size: .875rem; font-weight: 700; }
+.nsfc-p-caption-title { font: inherit; font-weight: 700; line-height: 1.45; margin: .24rem 0 0; }
+.nsfc-p-full { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--nsfc-p-green); font-size: .875rem; white-space: nowrap; text-decoration: underline; text-underline-offset: .23em; }
+.nsfc-p-section button { color: inherit; background: transparent; font: inherit; cursor: pointer; text-transform: none; }
+.nsfc-p-controls { display: flex; align-items: center; justify-content: space-between; padding: .28rem clamp(.35rem, 1.5cqi, .75rem); }
+.nsfc-p-prev, .nsfc-p-next { border: 0; min-height: 2.75rem; padding: .1rem .5rem; white-space: nowrap; font-size: .875rem !important; }
+.nsfc-p-prev:hover, .nsfc-p-next:hover, .nsfc-p-full:hover { text-decoration: underline; }
+.nsfc-p-dots { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 100%; }
+.nsfc-p-dot { border: 0; display: grid; place-items: center; width: 1.5rem; height: 2.75rem; padding: 0; }
+.nsfc-p-dot::after { content: ""; width: .46rem; height: .46rem; border: 1px solid #60746d; border-radius: 50%; }
+.nsfc-p-dot[aria-pressed="true"]::after { background: var(--nsfc-p-green); border-color: var(--nsfc-p-green); transform: scale(1.35); }
+.nsfc-p-list { list-style: none; margin: 0; padding: 0; border-block: 1px solid var(--nsfc-p-border); min-width: 0; max-height: clamp(24rem, 34vw, 34rem); overflow-y: auto; scrollbar-color: #879b92 #edf1ee; }
+.nsfc-p-list > li { margin: 0; padding: 0; }
+.nsfc-p-list > li + li { border-top: 1px solid var(--nsfc-p-border); }
+.nsfc-p-row { display: grid; width: 100%; grid-template-columns: 1.55rem minmax(0,1fr); align-items: baseline; gap: .45rem; padding: .86rem .8rem; border: 0; border-inline-start: 3px solid transparent; text-align: start; }
+.nsfc-p-row:hover { background: #edf3ee; }
+.nsfc-p-row[aria-pressed="true"] { background: #e4eee7; border-inline-start-color: var(--nsfc-p-green); }
+.nsfc-p-data { display: grid; gap: .28rem; overflow-wrap: anywhere; }
+.nsfc-p-paper-title { font-size: 1rem; line-height: 1.45; }
+.nsfc-p-venue, .nsfc-p-category { font-size: .875rem; line-height: 1.45; color: var(--nsfc-p-muted); }
+.nsfc-p-note { margin: .75rem 0 0; color: var(--nsfc-p-muted); font-size: .875rem; line-height: 1.6; }
+.nsfc-p-section :is(a,button):focus-visible { outline: 3px solid #b65325; outline-offset: -3px; }
+.nsfc-p-live { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@container (max-width: 29rem) {
+  .nsfc-p-controls { display: grid; grid-template-columns: 1fr 1fr; row-gap: 0; }
+  .nsfc-p-dots { grid-area: 2 / 1 / 3 / 3; }
+  .nsfc-p-prev { justify-self: start; }
+  .nsfc-p-next { justify-self: end; }
+}
+@media (max-width: 48rem) {
+  .nsfc-p-columns { grid-template-columns: minmax(0,1fr); }
+  .nsfc-p-list { max-height: min(31rem, 65vh); }
+}
+
+#member-profiles, #academic-activities {
+  border-top: 1px solid var(--line, #c9d2ca);
+  padding-block: clamp(2rem, 5vw, 4rem);
+  scroll-margin-top: 1rem;
+}
+#member-profiles .member-heading, #academic-activities .meeting-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 1rem;
+  margin-bottom: 1.6rem;
+}
+#member-profiles h2, #academic-activities h2 {margin: 0}
+#member-profiles .member-heading a, #academic-activities .meeting-heading p {
+  font-size: .95rem;
+  margin: 0;
+}
+#member-profiles .member-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+#member-profiles .member {
+  padding: clamp(1.15rem, 2.8vw, 2.1rem);
+  border: 1px solid var(--line, #c9d2ca);
+  border-radius: .35rem;
+  background: #fcfdf9;
+  min-width: 0;
+}
+#member-profiles .member-intro {
+  display: grid;
+  grid-template-columns: 5.25rem minmax(0,1fr);
+  align-items: center;
+  gap: 1.15rem;
+}
+#member-profiles .member-photo {
+  width: 5.25rem;
+  height: 7rem;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: .15rem;
+  display: block;
+}
+#member-profiles .member h3 {
+  font-family: var(--serif,serif);
+  font-size: 1.55rem;
+  line-height: 1.4;
+  margin: 0;
+}
+#member-profiles .member-role {color: var(--ink,#122f32);margin: .15rem 0 .25rem}
+#member-profiles .member-intro a {font-size: .9rem}
+#member-profiles .member-bio {margin: 1.1rem 0;color: var(--muted,#4b615e)}
+#member-profiles .member-duty {
+  border-top: 1px solid var(--line,#c9d2ca);
+  margin: 0;
+  padding-top: .9rem;
+}
+#member-profiles .member-duty strong {
+  display: block;
+  font-size: .95rem;
+  margin-bottom: .18rem;
+  color: var(--green,#185a4a);
+}
+#academic-activities .meeting-heading p {color: var(--muted,#4b615e)}
+#academic-activities .meeting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.9rem clamp(.85rem,1.8vw,1.6rem);
+}
+#academic-activities .meeting-photo {margin: 0;min-width: 0}
+#academic-activities .meeting-photo a {
+  display: block;
+  overflow: hidden;
+  border-radius: .25rem;
+  background: #e1e6de;
+  cursor: zoom-in;
+}
+#academic-activities .meeting-photo img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  height: auto;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+}
+#academic-activities .meeting-photo figcaption {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 0;
+  color: var(--ink,#122f32);
+  padding: .6rem 0 0;
+}
+@media(max-width: 850px) {
+  #academic-activities .meeting-grid {grid-template-columns: repeat(2,minmax(0,1fr))}
+}
+@media(max-width: 680px) {
+  #member-profiles .member-grid {grid-template-columns: 1fr}
+}
+@media(max-width: 520px) {
+  #academic-activities .meeting-grid {grid-template-columns: 1fr;gap: 1.35rem}
+}
+
+/* Colours and spacing from the existing project's navy-and-gold masthead. */
+#paper-results, #member-profiles, #academic-activities { --green:#855424; }
+#paper-results { margin-block: 1.5rem 2.5rem; }
+#paper-results .nsfc-p-head h2 { font-size:clamp(1.32rem,2vw,1.65rem); }
+#paper-results .nsfc-p-viewer { border-radius:4px; overflow:hidden; }
+#paper-results .nsfc-p-row[aria-pressed=true] { background:#f4eadc; }
+#paper-results .nsfc-p-row:hover { background:#f8f2ea; }
+#paper-results .nsfc-p-list { scrollbar-color:#9daab7 #ecf0f4; background:white; }
+#member-profiles, #academic-activities { padding-block:0; border:0; }
+#member-profiles h2, #academic-activities h2 { font:700 clamp(1.8rem,3vw,2.4rem)/1.35 var(--serif,serif); }
+#member-profiles .member { background:#fff; }
+#member-profiles .member-heading a { color:#704817; font-weight:600; text-underline-offset:.22em; }
+#member-profiles .member-heading::before, #academic-activities .meeting-heading::before { content:none; }
+#member-profiles .member-photo { background:#f2f5f8; }
+#academic-activities .meeting-photo a:focus-visible { outline-offset:2px; }
