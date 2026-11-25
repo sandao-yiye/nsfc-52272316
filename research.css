@@ -1,0 +1,90 @@
+.results-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem 1.35rem;
+  margin: -.65rem 0 1.9rem;
+}
+.results-jump a {
+  color: #70491e;
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .28em;
+}
+.work-section {
+  margin-top: clamp(2.8rem, 6vw, 4.8rem);
+  border-top: 1px solid #c9d3de;
+  padding-top: 2rem;
+}
+.work-heading {
+  margin: 0 0 1.2rem;
+  color: var(--navy);
+  font: 700 clamp(1.4rem, 2.2vw, 1.85rem)/1.35 var(--serif);
+}
+.work-hint { margin: -.65rem 0 1.1rem; color: var(--muted); font-size: .95rem; }
+.software-item {
+  display: grid;
+  grid-template-columns: minmax(0, .95fr) minmax(0, 1.5fr);
+  margin: 0;
+  align-items: stretch;
+  border: 1px solid var(--line);
+  border-radius: .35rem;
+  background: white;
+  overflow: hidden;
+}
+.software-item > a {
+  display: grid;
+  place-items: center;
+  padding: 1.15rem;
+  background: #e5ebf0;
+  cursor: zoom-in;
+}
+.software-item img {display: block; max-width: 100%; height: auto; box-shadow: 0 .2rem .8rem rgb(18 36 58 / 12%)}
+.software-item figcaption { align-self: center; padding: clamp(1.1rem, 3vw, 2.25rem); }
+.software-item h4, .research-item h4 {
+  margin: 0 0 .4rem;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--navy);
+}
+.software-item figcaption p, .research-item figcaption > p {color: #40546a; line-height: 1.7}
+.research-topics {
+  display: flex; flex-wrap: wrap; gap: .45rem;
+  margin: 1.15rem 0 1.3rem;
+}
+.research-topics a {
+  display: inline-flex; align-items: center; justify-content: center;
+  text-decoration: none; color: var(--navy); background: #fff;
+  padding: .43rem .92rem; border: 1px solid #b9c8d6; border-radius: .25rem;
+  font-weight: 600; font-size: .94rem;
+}
+.research-topics a:hover {border-color: var(--navy)}
+.research-topics a[aria-selected="true"] {background: var(--navy); border-color: var(--navy); color: #fff}
+.research-panel {margin-bottom: 2rem}
+.research-panel[hidden] {display: none}
+.research-panel > h4 {margin: 0 0 1rem}
+.research-grid {display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(.9rem, 2vw, 1.55rem);}
+.research-item {
+  display: flex; flex-direction: column; min-width: 0; overflow: hidden;
+  border: 1px solid var(--line); border-radius: .35rem; background: #fff; margin: 0;
+}
+.research-item > a {
+  display: grid; place-items: center;
+  height: clamp(14rem, 23vw, 19rem); padding: .8rem;
+  cursor: zoom-in; background: #fff; border-bottom: 1px solid var(--line);
+}
+.research-item img {display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain}
+.research-item figcaption {padding: 1.05rem 1.25rem 1.2rem; flex: 1; display: flex; flex-direction: column;}
+.research-item figcaption .figure-source {font-size: .8rem; line-height: 1.45; color: #6d4b24; font-weight: 650; margin: 0 0 .5rem}
+.research-item figcaption .text-link {align-self: flex-start; margin-top: auto; padding-top: .6rem}
+#results .results-grid {margin-top: 2rem; grid-template-columns: repeat(2,minmax(0,1fr))}
+.lightbox-original {
+  position: absolute; left: max(1rem, env(safe-area-inset-left)); top: max(.65rem, env(safe-area-inset-top));
+  padding: .45rem .7rem; color: white; font-size: .95rem;
+  text-underline-offset: .2em;
+}
+@media (max-width: 720px) {
+  .software-item {grid-template-columns: minmax(0,1fr)}
+  .research-grid, #results .results-grid {grid-template-columns: minmax(0,1fr)}
+  .research-item > a {height: clamp(12rem, 57vw, 20rem)}
+  .research-topics a {flex: 1 1 44%; font-size: .89rem; padding-inline: .35rem}
+}

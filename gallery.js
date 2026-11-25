@@ -1,10 +1,11 @@
 (() => {
-  const gallery = document.getElementById('academic-activities');
-  const dialog = gallery?.querySelector('.meeting-lightbox');
+  const dialog = document.querySelector('.meeting-lightbox');
   if (!dialog || typeof dialog.showModal !== 'function') return;
 
   const caption = dialog.querySelector('figcaption');
   const closeButton = dialog.querySelector('.meeting-lightbox-close');
+  const original = dialog.querySelector('.lightbox-original');
+  const triggers = '.meeting-photo a, a[data-lightbox]';
   const image = document.createElement('img');
   let sourceLink = null;
   caption.before(image);
@@ -16,12 +17,12 @@
   }
   image.addEventListener('load', () => setImageSize(image.naturalWidth, image.naturalHeight));
 
-  gallery.querySelectorAll('.meeting-photo a').forEach(link => {
+  document.querySelectorAll(triggers).forEach(link => {
     link.setAttribute('aria-haspopup', 'dialog');
   });
 
-  gallery.addEventListener('click', event => {
-    const link = event.target.closest('.meeting-photo a');
+  document.addEventListener('click', event => {
+    const link = event.target.closest(triggers);
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     event.preventDefault();
     const thumbnail = link.querySelector('img');
@@ -30,14 +31,18 @@
                  thumbnail.naturalHeight || Number(thumbnail.getAttribute('height')));
     image.src = link.href;
     image.alt = thumbnail.alt;
-    caption.textContent = link.closest('figure').querySelector('figcaption').textContent;
+    caption.textContent = link.dataset.lightbox || link.closest('figure').querySelector('figcaption').textContent;
+    if (original) {
+      original.href = link.href;
+      original.hidden = !link.hasAttribute('data-lightbox');
+    }
     dialog.showModal();
   });
 
   closeButton.addEventListener('click', () => dialog.close());
   for (const eventName of ['click', 'contextmenu']) {
     dialog.addEventListener(eventName, event => {
-      if (event.target === image || closeButton.contains(event.target)) return;
+      if (event.target === image || closeButton.contains(event.target) || original?.contains(event.target)) return;
       event.preventDefault();
       dialog.close();
     });
