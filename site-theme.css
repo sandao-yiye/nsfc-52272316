@@ -27,6 +27,30 @@
 }
 .hero h1 span {display: block}
 .hero-kicker {letter-spacing: .12em}
+.paper-indexes .journal-quartile {
+  color: #684312;
+  border-color: #e0cba7;
+  background: #f8efdf;
+}
+.paper-indexes .journal-cas {
+  color: #684312;
+  border-color: #e9dcc8;
+  background: #fcf7ed;
+}
+.nsfc-p-caption > div {min-width: 0}
+.nsfc-p-caption-title {overflow-wrap: anywhere}
+.nsfc-p-head + .nsfc-p-note {margin: -.65rem 0 1.1rem}
+.paper-group-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .34rem .95rem;
+  color: var(--ink);
+  background: #eaf0f5;
+  font-size: .84rem;
+  font-weight: 650;
+}
+.paper-group-heading span:last-child {font-weight: 400; color: var(--muted)}
 .overview-copy > p {max-width: 36em}
 .overview-copy > p + p {margin-top: .85rem}
 #results .result-card > .text-link {margin-top: auto; padding-top: .75rem}
