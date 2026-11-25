@@ -74,7 +74,6 @@
 }
 .research-item img {display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain}
 .research-item figcaption {padding: 1.05rem 1.25rem 1.2rem; flex: 1; display: flex; flex-direction: column;}
-.research-item figcaption .figure-source {font-size: .8rem; line-height: 1.45; color: #6d4b24; font-weight: 650; margin: 0 0 .5rem}
 .research-item figcaption .text-link {align-self: flex-start; margin-top: auto; padding-top: .6rem}
 #results .results-grid {margin-top: 2rem; grid-template-columns: repeat(2,minmax(0,1fr))}
 .lightbox-original {
