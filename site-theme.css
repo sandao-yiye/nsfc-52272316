@@ -3,6 +3,28 @@
   font-size: clamp(2.25rem, 4.25vw, 3.65rem);
   line-height: 1.26;
 }
+@media(max-width: 600px) {
+  #publications .papers-table,
+  #publications .papers-table tbody {display: block}
+  #publications .papers-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  #publications .papers-table tr:not([hidden]) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .55rem 1rem;
+    align-items: baseline;
+    padding: .95rem 1rem;
+  }
+  #publications .papers-table td {display: block; padding: 0}
+  #publications .papers-table td:first-child {grid-column: 1 / -1}
+  #publications .papers-table td:nth-child(2)::after {content: " 年"}
+  #publications .papers-table tbody tr:first-child {border-top: 0}
+}
 .hero h1 span {display: block}
 .hero-kicker {letter-spacing: .12em}
 .overview-copy > p {max-width: 36em}
