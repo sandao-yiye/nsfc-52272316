@@ -8,17 +8,66 @@
     if (!rows.length || rows.length !== dots.length) return;
     section.dataset.nsfcPReady = 'true';
     const list = find('.nsfc-p-list');
-    const image = find('.nsfc-p-picture');
+    const sheet = find('.nsfc-p-picture');
     const imageLink = find('.nsfc-p-picture-link');
     const fullLink = find('.nsfc-p-full');
     const counter = find('.nsfc-p-counter');
     const caption = find('.nsfc-p-caption-title');
     const live = find('.nsfc-p-live');
     let current = 0;
+    let sheetReady = false;
+    let sheetFailed = !sheet.classList.contains('nsfc-p-sheet');
+
+    function setPreviewState(state) {
+      imageLink.dataset.previewState = state;
+      imageLink.setAttribute('aria-busy', String(state === 'loading'));
+    }
+
+    function showPreview(row) {
+      const alt = '论文截图：' + row.dataset.nsfcPShort;
+      const slot = Number(row.dataset.previewSlot);
+      if (!sheetFailed && Number.isInteger(slot) && slot >= 0 && slot < 13) {
+        imageLink.style.setProperty('--paper-column', slot % 3);
+        imageLink.style.setProperty('--paper-row', Math.floor(slot / 3));
+        sheet.alt = alt;
+        if (sheet.parentElement !== imageLink) imageLink.replaceChildren(sheet);
+        setPreviewState(sheetReady ? 'ready' : 'loading');
+        return;
+      }
+
+      // A missing preview sheet or an entry without a slot can still use its original.
+      const fallback = new Image(1800, 864);
+      fallback.className = 'nsfc-p-picture';
+      fallback.alt = alt;
+      fallback.draggable = false;
+      fallback.onload = () => {
+        if (fallback.parentElement === imageLink) setPreviewState('original');
+      };
+      fallback.onerror = () => {
+        if (fallback.parentElement === imageLink) setPreviewState('error');
+      };
+      setPreviewState('loading');
+      imageLink.replaceChildren(fallback);
+      fallback.src = row.dataset.nsfcPImage;
+    }
+
+    showPreview(rows[0]);
+    if (!sheetFailed) {
+      sheet.decode().then(() => {
+        sheetReady = true;
+        if (sheet.parentElement === imageLink) setPreviewState('ready');
+      }).catch(() => {
+        sheetFailed = true;
+        if (sheet.parentElement === imageLink) showPreview(rows[current]);
+      });
+    }
 
     function select(index) {
       const next = (index + rows.length) % rows.length;
-      if (next === current) return;
+      if (next === current) {
+        if (imageLink.dataset.previewState === 'error') showPreview(rows[current]);
+        return;
+      }
       rows[current].setAttribute('aria-pressed', 'false');
       dots[current].setAttribute('aria-pressed', 'false');
       dots[current].tabIndex = -1;
@@ -28,8 +77,7 @@
       row.setAttribute('aria-pressed', 'true');
       dots[current].setAttribute('aria-pressed', 'true');
       dots[current].tabIndex = 0;
-      image.src = source;
-      image.alt = '论文截图：' + shortTitle;
+      showPreview(row);
       for (const link of [imageLink, fullLink]) {
         link.href = source;
         link.setAttribute('aria-label', '放大查看第 ' + (current + 1) + ' 篇论文高清截图');

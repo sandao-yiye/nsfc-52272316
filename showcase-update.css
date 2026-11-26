@@ -14,8 +14,19 @@
 .nsfc-p-columns { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(1rem, 2vw, 2.25rem); align-items: start; }
 .nsfc-p-viewer { min-width: 0; container-type: inline-size; border: 1px solid var(--nsfc-p-border); background: #fff; }
 .nsfc-p-screen { background: #ecf0ed; }
-.nsfc-p-picture-link { display: block; cursor: zoom-in; touch-action: pan-y pinch-zoom; }
+.nsfc-p-picture-link { display: block; position: relative; overflow: hidden; aspect-ratio: 1800/864; cursor: zoom-in; touch-action: pan-y pinch-zoom; }
 .nsfc-p-picture { display: block; margin: 0; width: 100%; height: auto; aspect-ratio: 1800/864; object-fit: contain; }
+.nsfc-p-sheet {
+  position: absolute; width: 300%; height: 500%; max-width: none; max-height: none;
+  left: calc(-100% * var(--paper-column)); top: calc(-100% * var(--paper-row));
+  aspect-ratio: auto; object-fit: fill; pointer-events: none;
+}
+.nsfc-p-picture-link:is([data-preview-state="loading"],[data-preview-state="error"])::after {
+  display: grid; place-items: center; position: absolute; inset: 0;
+  color: var(--nsfc-p-muted); background: white; font-size: .9rem; pointer-events: none;
+  content: "正在载入论文预览…";
+}
+.nsfc-p-picture-link[data-preview-state="error"]::after { content: "图片加载失败，请重新选择这篇论文以重试"; }
 .nsfc-p-caption { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem clamp(.8rem, 4cqi, 1.55rem); border-block: 1px solid var(--nsfc-p-border); }
 .nsfc-p-counter, .nsfc-p-no { font-variant-numeric: tabular-nums; color: var(--nsfc-p-green); font-size: .875rem; font-weight: 700; }
 .nsfc-p-caption-title { font: inherit; font-weight: 700; line-height: 1.45; margin: .24rem 0 0; }

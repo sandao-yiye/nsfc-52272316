@@ -25,4 +25,17 @@
 
 ## 调整布局
 
+### 更新论文轮播截图
+
+轮播一次载入 [13 篇论文的预览合图](./assets/papers/carousel-previews.webp)，点击放大时读取对应的高清 PNG。替换某篇截图后，在网站目录运行以下命令，将新生成的合图和修改后的 PNG 一同提交。仅调整论文展示顺序时，保留每篇条目的 `data-preview-slot` 即可。
+
+```sh
+python -m pip install Pillow
+python tools/build-paper-previews.py
+```
+
+如需完全通过 GitHub 网页更新一张图，可上传新 PNG，并在 `index.html` 中删除该论文按钮的 `data-preview-slot` 属性。这一篇会直接使用新 PNG，其他论文继续使用预览合图。
+
+### 网页样式
+
 基础版式在 `styles.css`，论文轮播、成员卡片和活动相册样式在 `showcase-update.css`，会议分组和图片放大样式在 `gallery.css`，软著与研究展示样式在 `research.css`，首页标题和移动版导航样式在 `site-theme.css`。网页使用相对路径，可下载整个仓库后在本地打开 `index.html` 预览。
