@@ -5,7 +5,7 @@
   const caption = dialog.querySelector('figcaption');
   const closeButton = dialog.querySelector('.meeting-lightbox-close');
   const original = dialog.querySelector('.lightbox-original');
-  const triggers = '.meeting-photo a, a[data-lightbox]';
+  const triggers = '.meeting-photo a, a[data-lightbox], .nsfc-p-picture-link, .nsfc-p-full';
   const image = document.createElement('img');
   let sourceLink = null;
   caption.before(image);
@@ -23,15 +23,18 @@
 
   document.addEventListener('click', event => {
     const link = event.target.closest(triggers);
-    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     event.preventDefault();
-    const thumbnail = link.querySelector('img');
+    const paperViewer = link.closest('.nsfc-p-viewer');
+    const thumbnail = paperViewer ? paperViewer.querySelector('.nsfc-p-picture') : link.querySelector('img');
     sourceLink = link;
     setImageSize(thumbnail.naturalWidth || Number(thumbnail.getAttribute('width')),
                  thumbnail.naturalHeight || Number(thumbnail.getAttribute('height')));
     image.src = link.href;
     image.alt = thumbnail.alt;
-    caption.textContent = link.dataset.lightbox || link.closest('figure').querySelector('figcaption').textContent;
+    caption.textContent = paperViewer
+      ? paperViewer.querySelector('.nsfc-p-caption-title').textContent
+      : link.dataset.lightbox || link.closest('figure').querySelector('figcaption').textContent;
     if (original) {
       original.href = link.href;
       original.hidden = !link.hasAttribute('data-lightbox');
@@ -48,6 +51,7 @@
     });
   }
   dialog.addEventListener('close', () => {
+    if (dialog.open) return;
     sourceLink?.focus({ preventScroll: true });
     sourceLink = null;
     image.removeAttribute('src');

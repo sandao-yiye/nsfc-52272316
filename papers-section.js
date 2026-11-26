@@ -32,7 +32,7 @@
       image.alt = '论文截图：' + shortTitle;
       for (const link of [imageLink, fullLink]) {
         link.href = source;
-        link.setAttribute('aria-label', '查看第 ' + (current + 1) + ' 篇论文高清截图（新窗口）');
+        link.setAttribute('aria-label', '放大查看第 ' + (current + 1) + ' 篇论文高清截图');
       }
       caption.textContent = shortTitle;
       counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + rows.length;
