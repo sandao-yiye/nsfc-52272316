@@ -21,6 +21,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+picture { display: block; }
 html { scroll-padding-top: calc(var(--header-height) + 14px); }
 body { margin: 0; color: var(--ink); font: 1rem/1.75 var(--sans); background: #fff; }
 h1, h2, h3, p, dl, dd { margin: 0; }
@@ -61,11 +62,17 @@ button { font: inherit; }
 .menu-button { display: none; }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   color: #f9f6f0;
   background-color: #0a1424;
-  background-image: linear-gradient(90deg, rgb(7 18 34 / 71%) 0%, rgb(7 18 34 / 43%) 43%, rgb(7 18 34 / 2%) 86%), url("assets/research-cover.webp");
-  background-position: center, center 47%;
-  background-size: cover;
+}
+.hero-media, .hero::before { position: absolute; inset: 0; pointer-events: none; }
+.hero-media { z-index: -2; }
+.hero-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 47%; }
+.hero::before {
+  content: ""; z-index: -1;
+  background: linear-gradient(90deg, rgb(7 18 34 / 71%) 0%, rgb(7 18 34 / 43%) 43%, rgb(7 18 34 / 2%) 86%);
 }
 .hero-inner { min-height: 30rem; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-block: 3.75rem; }
 .hero-kicker { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.15rem; color: #efc896; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.18em; }
@@ -202,9 +209,9 @@ button { font: inherit; }
   }
   .js .menu-button[aria-expanded="false"] + .site-nav { display: none; }
   .menu-icon { display: block; width: 0.9rem; height: 0.65rem; border-block: 1px solid currentColor; background: linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat; }
-  .hero {
-    background-position: center, 62% center;
-    background-image: linear-gradient(90deg, rgb(7 18 34 / 83%) 0%, rgb(7 18 34 / 63%) 55%, rgb(7 18 34 / 24%) 100%), url("assets/research-cover.webp");
+  .hero-media img { object-position: 62% center; }
+  .hero::before {
+    background: linear-gradient(90deg, rgb(7 18 34 / 83%) 0%, rgb(7 18 34 / 63%) 55%, rgb(7 18 34 / 24%) 100%);
   }
   .hero-inner { min-height: 25rem; padding-block: 2.7rem; }
   .hero h1 { font-size: clamp(2.0rem, 7.9vw, 3.6rem); }

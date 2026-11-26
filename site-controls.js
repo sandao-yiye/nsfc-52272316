@@ -3,6 +3,27 @@
   const menu = document.querySelector(".menu-button");
   const nav = document.getElementById("main-nav");
   if (!menu || !nav) return;
+  // Keep native in-page links and Back/Forward. A section URL entered in the
+  // address bar should land on the cover, just like a fresh external visit.
+  let followedHash = "";
+  document.addEventListener("click", event => {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest('a[href^="#"]');
+    if (link && !link.target && link.hash !== location.hash) followedHash = link.hash;
+  });
+  window.addEventListener("hashchange", event => {
+    const hash = new URL(event.newURL).hash;
+    if (hash !== location.hash) return;
+    const followedLink = hash === followedHash;
+    followedHash = "";
+    if (!hash) return;
+    if (followedLink) {
+      history.replaceState({...history.state, sectionHash: hash}, "");
+    } else if (history.state?.sectionHash !== hash) {
+      history.replaceState(null, "", location.pathname + location.search);
+      window.scrollTo(0, 0);
+    }
+  });
   document.documentElement.classList.add("js");
   const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
   const sections = links.map(link => document.getElementById(link.hash.substring(1)));

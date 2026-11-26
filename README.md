@@ -25,6 +25,15 @@
 
 ## 调整布局
 
+### 更新封面、活动照片、头像或研究配图
+
+页面会按屏幕选择合适尺寸的图片，图表和会议照片点开后会显示原图。更换素材时，把原图放回原路径，然后在仓库根目录运行下列命令，将新生成的文件与原图一同提交。首页封面原图位于 `assets/research-cover.webp`。
+
+```sh
+python -m pip install "Pillow>=11.3"
+python tools/build-display-images.py
+```
+
 ### 更新论文轮播截图
 
 轮播一次载入 [13 篇论文的预览合图](./assets/papers/carousel-previews.webp)，点击放大时读取对应的高清 PNG。替换某篇截图后，在网站目录运行以下命令，将新生成的合图和修改后的 PNG 一同提交。仅调整论文展示顺序时，保留每篇条目的 `data-preview-slot` 即可。

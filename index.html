@@ -6,16 +6,37 @@
   <meta name="theme-color" content="#12243a">
   <meta name="description" content="长安大学国家自然科学基金面上项目“网约车与公共交通出行关联机理及协同运行调控技术研究”（52272316）项目概况、成员介绍、研究成果与学术活动。">
   <title>国家自然科学基金项目成果展示——网约车与公共交通出行关联机理及协同运行调控技术研究</title>
-  <link rel="preload" href="assets/papers/carousel-previews.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Discard an incoming section fragment before the browser finds its target.
+    (() => {
+      const visit = performance.getEntriesByType('navigation')[0];
+      if (visit?.type === 'back_forward') return;
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+      if (visit?.type === 'reload') {
+        history.scrollRestoration = 'manual';
+        const input = new AbortController();
+        for (const type of ['pointerdown', 'wheel', 'keydown', 'touchstart']) {
+          window.addEventListener(type, () => input.abort(), {passive: true, signal: input.signal});
+        }
+        window.addEventListener('pageshow', () => {
+          requestAnimationFrame(() => {
+            if (!input.signal.aborted && !location.hash) window.scrollTo(0, 0);
+            input.abort();
+            history.scrollRestoration = 'auto';
+          });
+        }, {once: true});
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=display-images-1">
   <link rel="stylesheet" href="showcase-update.css?v=paper-previews-1">
   <link rel="stylesheet" href="site-theme.css">
-  <link rel="stylesheet" href="gallery.css?v=paper-previews-1">
+  <link rel="stylesheet" href="gallery.css?v=display-images-1">
   <link rel="stylesheet" href="research.css">
-  <script defer src="papers-section.js?v=paper-previews-1"></script>
+  <script defer src="papers-section.js?v=display-images-1"></script>
   <script defer src="publications.js"></script>
-  <script defer src="site-controls.js"></script>
-  <script defer src="gallery.js?v=paper-previews-1"></script>
+  <script defer src="site-controls.js?v=display-images-1"></script>
+  <script defer src="gallery.js?v=display-images-1"></script>
   <script defer src="research.js"></script>
 </head>
 <body id="top">
@@ -38,6 +59,12 @@
   </header>
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
+      <picture class="hero-media" aria-hidden="true">
+        <source media="(max-width: 740px)" type="image/avif" srcset="assets/cover/mobile.avif">
+        <source media="(max-width: 740px)" type="image/webp" srcset="assets/cover/mobile.webp">
+        <source type="image/avif" srcset="assets/cover/desktop.avif">
+        <img src="assets/research-cover.webp" alt="" width="1536" height="1024" fetchpriority="high">
+      </picture>
       <div class="wrap hero-inner">
         <p class="hero-kicker">国家自然科学基金项目成果展示</p>
         <h1 id="hero-title"><span>网约车与公共交通</span><span>出行关联机理及</span><span>协同运行调控技术研究</span></h1>
@@ -76,7 +103,7 @@
           <div class="member-grid">
             <article class="member">
               <div class="member-intro">
-                <img class="member-photo" src="assets/members/deng.jpg" width="396" height="600" loading="lazy" decoding="async" alt="邓亚娟老师肖像">
+                <picture><source type="image/webp" srcset="assets/members/previews/deng-84.webp 84w, assets/members/previews/deng-168.webp 168w" sizes="5.25rem"><img class="member-photo" src="assets/members/deng.jpg" width="396" height="600" loading="lazy" decoding="async" alt="邓亚娟老师肖像"></picture>
                 <div><h3>邓亚娟</h3><p class="member-role">项目负责人</p><a href="https://js.chd.edu.cn/ysgcxy/dyj/list.psp" aria-label="邓亚娟的教师主页">教师主页</a></div>
               </div>
               <p class="member-bio">教授、博士生导师，同济大学交通运输规划与管理专业博士。主要利用多源数据研究公共交通规划与运营，以及多种出行方式的组合与优化。曾主持城市轨道交通接驳公交线网重构研究。</p>
@@ -84,7 +111,7 @@
             </article>
             <article class="member">
               <div class="member-intro">
-                <img class="member-photo" src="assets/members/cheng.jpg" width="533" height="800" loading="lazy" decoding="async" alt="程小云老师肖像">
+                <picture><source type="image/webp" srcset="assets/members/previews/cheng-84.webp 84w, assets/members/previews/cheng-168.webp 168w" sizes="5.25rem"><img class="member-photo" src="assets/members/cheng.jpg" width="533" height="800" loading="lazy" decoding="async" alt="程小云老师肖像"></picture>
                 <div><h3>程小云</h3><p class="member-role">关联机理解析</p><a href="https://js.chd.edu.cn/ysgcxy/cxy/list.htm" aria-label="程小云的教师主页">教师主页</a></div>
               </div>
               <p class="member-bio">副教授、硕士生导师，博士。研究交通大数据挖掘、居民出行行为及其与城市空间形态的关系。曾主持陕西省自然科学基金项目，利用出租车轨迹识别潜在公交需求，研究公交服务与需求的匹配策略。</p>
@@ -92,7 +119,7 @@
             </article>
             <article class="member">
               <div class="member-intro">
-                <img class="member-photo" src="assets/members/wu.jpg" width="533" height="800" loading="lazy" decoding="async" alt="邬娜老师肖像">
+                <picture><source type="image/webp" srcset="assets/members/previews/wu-84.webp 84w, assets/members/previews/wu-168.webp 168w" sizes="5.25rem"><img class="member-photo" src="assets/members/wu.jpg" width="533" height="800" loading="lazy" decoding="async" alt="邬娜老师肖像"></picture>
                 <div><h3>邬娜</h3><p class="member-role">理想点判定</p><a href="https://js.chd.edu.cn/ysgcxy/wn1/list.htm" aria-label="邬娜的教师主页">教师主页</a></div>
               </div>
               <p class="member-bio">讲师、硕士生导师，大连理工大学管理科学与工程（交通系统工程）博士。研究交通行为与交通系统优化，曾主持共享自动驾驶出行方式选择及其分担率预测研究。</p>
@@ -100,7 +127,7 @@
             </article>
             <article class="member">
               <div class="member-intro">
-                <img class="member-photo" src="assets/members/han.jpg" width="420" height="599" loading="lazy" decoding="async" alt="韩飞老师肖像">
+                <picture><source type="image/webp" srcset="assets/members/previews/han-84.webp 84w, assets/members/previews/han-168.webp 168w" sizes="5.25rem"><img class="member-photo" src="assets/members/han.jpg" width="420" height="599" loading="lazy" decoding="async" alt="韩飞老师肖像"></picture>
                 <div><h3>韩飞</h3><p class="member-role">协同调控方法</p><a href="https://js.chd.edu.cn/ysgcxy/hf/list.htm" aria-label="韩飞的教师主页">教师主页</a></div>
               </div>
               <p class="member-bio">讲师、硕士生导师，东南大学交通运输规划与管理博士。研究城市多模式交通系统的建模与协同优化，关注共享出行服务如何根据乘客的出行选择调整运营策略。</p>
@@ -122,7 +149,7 @@
           <div class="nsfc-p-columns">
             <div class="nsfc-p-viewer" role="region" aria-label="论文截图轮播">
               <div class="nsfc-p-screen" id="nsfc-p-screen">
-                <a class="nsfc-p-picture-link" style="--paper-column:0; --paper-row:1" href="assets/papers/04.png" aria-label="放大查看第 1 篇论文高清截图"><img class="nsfc-p-picture nsfc-p-sheet" src="assets/papers/carousel-previews.webp" fetchpriority="high" decoding="async" alt="论文截图：空间认知视角下换乘节点的几何量化与乘客换乘出行模式解析：一种连续空间分析框架" draggable="false"></a>
+                <a class="nsfc-p-picture-link" style="--paper-column:0; --paper-row:1" href="assets/papers/04.png" aria-label="放大查看第 1 篇论文高清截图"><img class="nsfc-p-picture nsfc-p-sheet" src="assets/papers/carousel-previews.webp" loading="lazy" fetchpriority="low" decoding="async" alt="论文截图：空间认知视角下换乘节点的几何量化与乘客换乘出行模式解析：一种连续空间分析框架" draggable="false"></a>
               </div>
               <div class="nsfc-p-caption"><div><span class="nsfc-p-counter">01 / 13</span><h3 class="nsfc-p-caption-title">空间认知视角下换乘节点的几何量化与乘客换乘出行模式解析：一种连续空间分析框架</h3></div><a class="nsfc-p-full" href="assets/papers/04.png" aria-label="放大查看第 1 篇论文高清截图">查看高清图</a></div>
               <div class="nsfc-p-controls"><button class="nsfc-p-prev" type="button" aria-controls="nsfc-p-screen" aria-label="上一张论文截图">上一张</button><div class="nsfc-p-dots" role="group" aria-label="选择论文截图" aria-controls="nsfc-p-screen">
@@ -265,7 +292,7 @@
             <h4>网约车与公共交通</h4>
             <div class="research-grid">
               <figure class="research-item">
-                <a href="assets/research/paper-03.webp" data-lightbox="网约车与公共交通关系的昼夜变化"><img src="assets/research/paper-03.webp" alt="网约车与公共交通四类关系在四个时段的网格分布图，图上叠加地铁线路" width="1654" height="1188" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-03.webp" data-lightbox="网约车与公共交通关系的昼夜变化"><img src="assets/research/previews/paper-03-1x.webp" srcset="assets/research/previews/paper-03-1x.webp 1x, assets/research/previews/paper-03-2x.webp 2x" alt="网约车与公共交通四类关系在四个时段的网格分布图，图上叠加地铁线路" width="1654" height="1188" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>网约车与公共交通关系的昼夜变化</h4>
                   <p>四幅网格地图依次展示西安早高峰、日间工作时段、晚高峰和深夜的出行关系。图中用颜色区分竞争、网约车占优、公共交通占优和无关四类，叠加的地铁线路可帮助辨认轨道走廊周边的变化。</p>
@@ -273,7 +300,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-01.webp" data-lightbox="公交供给缺口应先补在哪里"><img src="assets/research/paper-01.webp" alt="西安公交供给缺口分布图，色条分别标出各交通小区优先改善的三项指标" width="1350" height="897" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-01.webp" data-lightbox="公交供给缺口应先补在哪里"><img src="assets/research/previews/paper-01-1x.webp" srcset="assets/research/previews/paper-01-1x.webp 1x, assets/research/previews/paper-01-2x.webp 2x" alt="西安公交供给缺口分布图，色条分别标出各交通小区优先改善的三项指标" width="1350" height="897" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>公交供给缺口应先补在哪里</h4>
                   <p>红色标出西安存在公共交通供给缺口的交通小区，每组色条按优先次序列出该区最需改善的三项指标。步行距离在多处入列。中心区域还集中出现了换乘次数和站点密度问题。</p>
@@ -281,7 +308,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-06.webp" data-lightbox="车费和收入怎样影响选择网约车的概率"><img src="assets/research/paper-06.webp" alt="四个时段的收入与网约车费用热力图，颜色表示预测选择概率" width="1673" height="1456" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-06.webp" data-lightbox="车费和收入怎样影响选择网约车的概率"><img src="assets/research/previews/paper-06-1x.webp" srcset="assets/research/previews/paper-06-1x.webp 1x, assets/research/previews/paper-06-2x.webp 2x" alt="四个时段的收入与网约车费用热力图，颜色表示预测选择概率" width="1673" height="1456" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>车费和收入怎样影响选择网约车的概率</h4>
                   <p>热力图把乘客收入与网约车费用组合起来，比较早高峰、晚高峰、日间和夜间的预测选择概率。早高峰时，费用上升会明显降低低收入乘客选择网约车的概率，高收入乘客在较宽的费用区间内仍有较高的选择概率。</p>
@@ -289,7 +316,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/slide-25.webp" data-lightbox="西安地铁站周边的网约车竞争比例"><img src="assets/research/slide-25.webp" alt="西安地铁站网约车竞争比例分布图与十个站点的订单量对照表，图例由绿至红表示比例升高" width="2575" height="1201" loading="lazy" decoding="async"></a>
+                <a href="assets/research/slide-25.webp" data-lightbox="西安地铁站周边的网约车竞争比例"><img src="assets/research/previews/slide-25-1x.webp" srcset="assets/research/previews/slide-25-1x.webp 1x, assets/research/previews/slide-25-2x.webp 2x" alt="西安地铁站网约车竞争比例分布图与十个站点的订单量对照表，图例由绿至红表示比例升高" width="2575" height="1201" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>西安地铁站周边的网约车竞争比例</h4>
                   <p>以站点周边 800 米内一天的网约车出发订单为基数，地图用颜色表示其中与地铁形成竞争的订单占比。机场站 501 单中有 208 单被识别为竞争出行，占 41.5%。西安北站对应比例为 34.4%。</p>
@@ -301,7 +328,7 @@
             <h4>换乘与出行选择</h4>
             <div class="research-grid">
               <figure class="research-item">
-                <a href="assets/research/paper-04.webp" data-lightbox="换乘点更可能出现在起终点之间的什么位置"><img src="assets/research/paper-04.webp" alt="标准化空间中换乘位置的概率密度等值线，标出起点、终点与换乘分布中心" width="1836" height="1513" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-04.webp" data-lightbox="换乘点更可能出现在起终点之间的什么位置"><img src="assets/research/previews/paper-04-1x.webp" srcset="assets/research/previews/paper-04-1x.webp 1x, assets/research/previews/paper-04-2x.webp 2x" alt="标准化空间中换乘位置的概率密度等值线，标出起点、终点与换乘分布中心" width="1836" height="1513" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>换乘点更可能出现在起终点之间的什么位置</h4>
                   <p>研究将不同行程的起点和终点对齐到同一坐标系，再用高斯混合模型估计换乘位置的概率密度。等值线围成沿起终点连线延伸的椭圆，高密度区集中在两点中部附近。</p>
@@ -309,7 +336,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-02.webp" data-lightbox="路径长度差如何影响不同乘客的选择"><img src="assets/research/paper-02.webp" alt="四组乘客在不同路径长度差下的均匀性区间占比堆叠柱状图" width="1417" height="992" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-02.webp" data-lightbox="路径长度差如何影响不同乘客的选择"><img src="assets/research/previews/paper-02-1x.webp" srcset="assets/research/previews/paper-02-1x.webp 1x, assets/research/previews/paper-02-2x.webp 2x" alt="四组乘客在不同路径长度差下的均匀性区间占比堆叠柱状图" width="1417" height="992" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>路径长度差如何影响不同乘客的选择</h4>
                   <p>四幅堆叠柱图比较经常乘坐公交的老年乘客、普通乘客、学生和残障乘客。横轴是可选路径之间的长度差，每种颜色代表一个路径选择均匀性区间。普通乘客约在 500 米处出现变化，学生群体则未呈现清晰阈值。</p>
@@ -317,7 +344,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-09.webp" data-lightbox="西安北站出租车接驳需求的空间分布"><img src="assets/research/paper-09.webp" alt="两幅并排的西安市出租车接驳行程热力图，星号标出西安北站，黄至红的网格表示行程数。" width="1836" height="728" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-09.webp" data-lightbox="西安北站出租车接驳需求的空间分布"><img src="assets/research/previews/paper-09-1x.webp" srcset="assets/research/previews/paper-09-1x.webp 1x, assets/research/previews/paper-09-2x.webp 2x" alt="两幅并排的西安市出租车接驳行程热力图，星号标出西安北站，黄至红的网格表示行程数。" width="1836" height="728" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>西安北站出租车接驳需求的空间分布</h4>
                   <p>左、右两图分别统计抵达和离开西安北站的出租车接驳行程。每个网格边长 500 米，红色代表较高的出行量。两种方向的高需求网格都集中在车站附近。</p>
@@ -325,7 +352,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-07.webp" data-lightbox="数字信息如何影响出行者的感知可达性"><img src="assets/research/paper-07.webp" alt="结构方程模型路径图，箭头连接算法导航、社交媒体、出行认知与感知可达性，颜色标示作用方向与数字素养的调节作用。" width="1840" height="1252" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-07.webp" data-lightbox="数字信息如何影响出行者的感知可达性"><img src="assets/research/previews/paper-07-1x.webp" srcset="assets/research/previews/paper-07-1x.webp 1x, assets/research/previews/paper-07-2x.webp 2x" alt="结构方程模型路径图，箭头连接算法导航、社交媒体、出行认知与感知可达性，颜色标示作用方向与数字素养的调节作用。" width="1840" height="1252" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>数字信息如何影响出行者的感知可达性</h4>
                   <p>从左向右可追踪数字信息、认知变化与感知可达性之间的路径。模型中，算法导航依赖与出行选择固化呈正相关，社交媒体出行信息的采纳与空间感知极化也呈正相关。</p>
@@ -333,7 +360,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/slide-08.webp" data-lightbox="从公交刷卡记录推算乘客出行起讫点"><img src="assets/research/slide-08.webp" alt="公交出行起讫点推算流程图，标出三类数据及从线路匹配到换乘识别的七个步骤" width="1918" height="1173" loading="lazy" decoding="async"></a>
+                <a href="assets/research/slide-08.webp" data-lightbox="从公交刷卡记录推算乘客出行起讫点"><img src="assets/research/previews/slide-08-1x.webp" srcset="assets/research/previews/slide-08-1x.webp 1x, assets/research/previews/slide-08-2x.webp 2x" alt="公交出行起讫点推算流程图，标出三类数据及从线路匹配到换乘识别的七个步骤" width="1918" height="1173" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>从公交刷卡记录推算乘客出行起讫点</h4>
                   <p>流程从公交刷卡、车辆 GPS 和站点三类数据出发，依次匹配线路、车辆和上车站点，再推算下车站点与时间。结合换乘规则，分段乘车记录可进一步串联成公交出行链。</p>
@@ -345,7 +372,7 @@
             <h4>共享单车与公交</h4>
             <div class="research-grid">
               <figure class="research-item">
-                <a href="assets/research/paper-10.webp" data-lightbox="共享单车与公交关系的三维聚类"><img src="assets/research/paper-10.webp" alt="十二幅三维散点图展示工作日与周末的骑行记录，五种颜色区分公交替代、接驳及服务空白补充等关系。" width="1988" height="2528" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-10.webp" data-lightbox="共享单车与公交关系的三维聚类"><img src="assets/research/previews/paper-10-1x.webp" srcset="assets/research/previews/paper-10-1x.webp 1x, assets/research/previews/paper-10-2x.webp 2x" alt="十二幅三维散点图展示工作日与周末的骑行记录，五种颜色区分公交替代、接驳及服务空白补充等关系。" width="1988" height="2528" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>共享单车与公交关系的三维聚类</h4>
                   <p>每个点代表一次骑行，颜色区分五类单车与公交关系。图中将骑行时长、综合距离分别与交叉口数量、骑行道路风险或公交候车时间组合，上下两组对照工作日与周末的分类结果。</p>
@@ -353,7 +380,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-11.webp" data-lightbox="共享单车对公交与轨道交通的替代和补充"><img src="assets/research/paper-11.webp" alt="八幅网格地图按公交和轨道交通分为两排，线路与分级色块叠加，比较不同替代与补充关系的空间分布。" width="1732" height="1576" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-11.webp" data-lightbox="共享单车对公交与轨道交通的替代和补充"><img src="assets/research/previews/paper-11-1x.webp" srcset="assets/research/previews/paper-11-1x.webp 1x, assets/research/previews/paper-11-2x.webp 2x" alt="八幅网格地图按公交和轨道交通分为两排，线路与分级色块叠加，比较不同替代与补充关系的空间分布。" width="1732" height="1576" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>共享单车对公交与轨道交通的替代和补充</h4>
                   <p>上下两排分别对应公共汽电车和轨道交通。沿每排依次比较接驳补充、空白补充和两类替代关系，颜色表示各关系在网格内的占比。轨道交通服务空白区域的补充关系呈现明显集聚。</p>
@@ -366,7 +393,7 @@
             <h4>交通网络与城市空间</h4>
             <div class="research-grid">
               <figure class="research-item">
-                <a href="assets/research/paper-08.webp" data-lightbox="地铁站连续失效时，不同乘客经历的网络韧性变化"><img src="assets/research/paper-08.webp" alt="功能失效与拓扑失效两幅热图，对照四类乘客、累计失效站数和公共交通网络韧性。" width="1656" height="772" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-08.webp" data-lightbox="地铁站连续失效时，不同乘客经历的网络韧性变化"><img src="assets/research/previews/paper-08-1x.webp" srcset="assets/research/previews/paper-08-1x.webp 1x, assets/research/previews/paper-08-2x.webp 2x" alt="功能失效与拓扑失效两幅热图，对照四类乘客、累计失效站数和公共交通网络韧性。" width="1656" height="772" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>地铁站连续失效时，不同乘客经历的网络韧性变化</h4>
                   <p>两幅热图比较车站功能失效和拓扑失效。纵轴是累计失效站数，横轴区分四类乘客，颜色表示韧性值。随失效站数增加，各组韧性均下降，模拟中高收入通勤者的降幅快于老年游客。</p>
@@ -374,7 +401,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-05.webp" data-lightbox="哪些公交线路适合全天电动化"><img src="assets/research/paper-05.webp" alt="四幅西安公交线路地图按电动化建议覆盖率分组，附线路沿线用地类型饼图" width="2400" height="1581" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-05.webp" data-lightbox="哪些公交线路适合全天电动化"><img src="assets/research/previews/paper-05-1x.webp" srcset="assets/research/previews/paper-05-1x.webp 1x, assets/research/previews/paper-05-2x.webp 2x" alt="四幅西安公交线路地图按电动化建议覆盖率分组，附线路沿线用地类型饼图" width="2400" height="1581" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>哪些公交线路适合全天电动化</h4>
                   <p>四色线路图分别展示模型建议电动化覆盖率为 100%、90%、80% 和 70% 的西安公交线路，饼图给出沿线主要用地类型的构成。其中 71 条线路适合全天采用电动公交车，其余线路按建议覆盖率安排车辆。</p>
@@ -382,7 +409,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-13.webp" data-lightbox="道路重要度与交通状态的协调程度"><img src="assets/research/paper-13.webp" alt="四张并列的道路网络地图，用不同颜色标示交通状态与四类道路重要度指标的耦合协调等级。" width="1844" height="1392" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-13.webp" data-lightbox="道路重要度与交通状态的协调程度"><img src="assets/research/previews/paper-13-1x.webp" srcset="assets/research/previews/paper-13-1x.webp 1x, assets/research/previews/paper-13-2x.webp 2x" alt="四张并列的道路网络地图，用不同颜色标示交通状态与四类道路重要度指标的耦合协调等级。" width="1844" height="1392" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>道路重要度与交通状态的协调程度</h4>
                   <p>四幅地图分别从节点度、介数中心性、接近中心性和特征向量中心性衡量道路重要度。按介数中心性计算，50.75% 的样本道路属于极度或严重失调。按节点度计算，这一比例为 1.49%。</p>
@@ -390,7 +417,7 @@
                 </figcaption>
               </figure>
               <figure class="research-item">
-                <a href="assets/research/paper-12.webp" data-lightbox="建成环境对线上与线下城市活力的空间影响"><img src="assets/research/paper-12.webp" alt="八幅双变量地图分别展示植被指数、轨道站距离、灯光、路网、人口、建筑、公交站距离与兴趣点数量的空间效应。" width="1008" height="1468" loading="lazy" decoding="async"></a>
+                <a href="assets/research/paper-12.webp" data-lightbox="建成环境对线上与线下城市活力的空间影响"><img src="assets/research/previews/paper-12-1x.webp" srcset="assets/research/previews/paper-12-1x.webp 1x, assets/research/previews/paper-12-2x.webp 2x" alt="八幅双变量地图分别展示植被指数、轨道站距离、灯光、路网、人口、建筑、公交站距离与兴趣点数量的空间效应。" width="1008" height="1468" loading="lazy" decoding="async"></a>
                 <figcaption>
                   <h4>建成环境对线上与线下城市活力的空间影响</h4>
                   <p>八幅地图以双变量配色对照同一环境要素与实体、虚拟活力的局部联系。以路网密度为例，其正向作用在部分外围地区较强，在路网已密集的核心区减弱。</p>
@@ -431,27 +458,27 @@
             </div>
             <div class="meeting-grid">
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-team.jpg"><img src="assets/activities/trb-team.jpg" width="1440" height="1080" alt="四名课题组成员在公交串车研究海报前合影" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-team.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-team-288.webp 288w, assets/activities/previews/trb-team-448.webp 448w, assets/activities/previews/trb-team-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-team.jpg" width="1440" height="1080" alt="四名课题组成员在公交串车研究海报前合影" loading="lazy" decoding="async"></picture></a>
                 <figcaption>课题组成员与公交运行状态研究海报合影</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-poster-discussion.jpg"><img src="assets/activities/trb-poster-discussion.jpg" width="1080" height="1440" alt="邓亚娟与参会学者面向展板讨论" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-poster-discussion.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-poster-discussion-288.webp 288w, assets/activities/previews/trb-poster-discussion-448.webp 448w, assets/activities/previews/trb-poster-discussion-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-poster-discussion.jpg" width="1080" height="1440" alt="邓亚娟与参会学者面向展板讨论" loading="lazy" decoding="async"></picture></a>
                 <figcaption>邓亚娟与参会学者讨论海报内容</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-colleague-2.jpg"><img src="assets/activities/trb-colleague-2.jpg" width="1440" height="1080" alt="邓亚娟与参会学者在路内停车收费海报前合影" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-colleague-2.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-colleague-2-288.webp 288w, assets/activities/previews/trb-colleague-2-448.webp 448w, assets/activities/previews/trb-colleague-2-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-colleague-2.jpg" width="1440" height="1080" alt="邓亚娟与参会学者在路内停车收费海报前合影" loading="lazy" decoding="async"></picture></a>
                 <figcaption>路内停车收费研究海报交流</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-colleague-1.jpg"><img src="assets/activities/trb-colleague-1.jpg" width="1440" height="1080" alt="邓亚娟与一位参会学者站在学术海报前" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-colleague-1.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-colleague-1-288.webp 288w, assets/activities/previews/trb-colleague-1-448.webp 448w, assets/activities/previews/trb-colleague-1-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-colleague-1.jpg" width="1440" height="1080" alt="邓亚娟与一位参会学者站在学术海报前" loading="lazy" decoding="async"></picture></a>
                 <figcaption>邓亚娟与参会学者在海报前合影</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-registration.jpg"><img src="assets/activities/trb-registration.jpg" width="1440" height="1080" alt="邓亚娟站在标有 TRB Registration 的注册区前" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-registration.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-registration-288.webp 288w, assets/activities/previews/trb-registration-448.webp 448w, assets/activities/previews/trb-registration-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-registration.jpg" width="1440" height="1080" alt="邓亚娟站在标有 TRB Registration 的注册区前" loading="lazy" decoding="async"></picture></a>
                 <figcaption>2019 年 TRB 年会注册区</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/trb-poster-hall.jpg"><img src="assets/activities/trb-poster-hall.jpg" width="1440" height="1080" alt="邓亚娟身后是标有 Poster Sessions 的展厅入口" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/trb-poster-hall.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/trb-poster-hall-288.webp 288w, assets/activities/previews/trb-poster-hall-448.webp 448w, assets/activities/previews/trb-poster-hall-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 270px"><img src="assets/activities/trb-poster-hall.jpg" width="1440" height="1080" alt="邓亚娟身后是标有 Poster Sessions 的展厅入口" loading="lazy" decoding="async"></picture></a>
                 <figcaption>TRB 年会海报展厅入口</figcaption>
               </figure>
             </div>
@@ -464,11 +491,11 @@
             </div>
             <div class="meeting-grid meeting-pair">
               <figure class="meeting-photo">
-                <a href="assets/activities/full/wtc-2024-talk.jpg"><img src="assets/activities/wtc-2024-talk.jpg" width="1600" height="1200" alt="崔亮斌在讲台上介绍公共交通薄弱区识别研究" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/full/wtc-2024-talk.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/wtc-2024-talk-288.webp 288w, assets/activities/previews/wtc-2024-talk-448.webp 448w, assets/activities/previews/wtc-2024-talk-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 406px"><img src="assets/activities/wtc-2024-talk.jpg" width="1600" height="1200" alt="崔亮斌在讲台上介绍公共交通薄弱区识别研究" loading="lazy" decoding="async"></picture></a>
                 <figcaption>崔亮斌报告公共交通薄弱区识别方法</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/full/wtc-2024-team.jpg"><img src="assets/activities/wtc-2024-team.jpg" width="1600" height="1067" alt="课题组成员在青岛世界交通运输大会主题背景板前合影" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/full/wtc-2024-team.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/wtc-2024-team-288.webp 288w, assets/activities/previews/wtc-2024-team-448.webp 448w, assets/activities/previews/wtc-2024-team-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 406px"><img src="assets/activities/wtc-2024-team.jpg" width="1600" height="1067" alt="课题组成员在青岛世界交通运输大会主题背景板前合影" loading="lazy" decoding="async"></picture></a>
                 <figcaption>课题组成员在 2024 世界交通运输大会合影</figcaption>
               </figure>
             </div>
@@ -481,11 +508,11 @@
             </div>
             <div class="meeting-grid meeting-pair">
               <figure class="meeting-photo">
-                <a href="assets/activities/gitss-liang-yichen.jpg"><img src="assets/activities/gitss-liang-yichen.jpg" width="1280" height="1707" style="object-position: center 88%" alt="梁亦辰站在屏幕旁向听众讲解，屏幕上列有模型拟合指标和参数估计结果" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/gitss-liang-yichen.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/gitss-liang-yichen-288.webp 288w, assets/activities/previews/gitss-liang-yichen-448.webp 448w, assets/activities/previews/gitss-liang-yichen-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 406px"><img src="assets/activities/gitss-liang-yichen.jpg" width="1280" height="1707" style="object-position: center 88%" alt="梁亦辰站在屏幕旁向听众讲解，屏幕上列有模型拟合指标和参数估计结果" loading="lazy" decoding="async"></picture></a>
                 <figcaption>梁亦辰在 GITSS 会议上讲解问卷设计与模型标定结果</figcaption>
               </figure>
               <figure class="meeting-photo">
-                <a href="assets/activities/full/gitss-2026-talk.jpg"><img src="assets/activities/gitss-2026-talk.jpg" width="1600" height="1200" alt="郝可彤在会场介绍数字信息、目的地与交通方式选择之间的关系" loading="lazy" decoding="async"></a>
+                <a href="assets/activities/full/gitss-2026-talk.jpg"><picture><source type="image/webp" srcset="assets/activities/previews/gitss-2026-talk-288.webp 288w, assets/activities/previews/gitss-2026-talk-448.webp 448w, assets/activities/previews/gitss-2026-talk-864.webp 864w" sizes="auto, (max-width: 520px) calc(100vw - 2rem), (max-width: 850px) 46vw, 406px"><img src="assets/activities/gitss-2026-talk.jpg" width="1600" height="1200" alt="郝可彤在会场介绍数字信息、目的地与交通方式选择之间的关系" loading="lazy" decoding="async"></picture></a>
                 <figcaption>郝可彤在 GITSS 2026 作学术报告</figcaption>
               </figure>
             </div>

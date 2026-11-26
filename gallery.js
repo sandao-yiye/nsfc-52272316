@@ -21,25 +21,42 @@
     stage.replaceChildren();
     stage.removeAttribute('style');
     stage.removeAttribute('data-loading');
+    stage.removeAttribute('data-sheet');
   }
 
-  function loadPaper(image, thumbnail, previewLink) {
-    setImageSize(1800, 864);
+  function openImage(image, thumbnail, paperViewer, href) {
     stage.setAttribute('data-loading', '');
-    if (previewLink.dataset.previewState === 'ready' || thumbnail.classList.contains('nsfc-p-sheet')) {
-      const position = getComputedStyle(previewLink);
+    if (paperViewer) {
+      setImageSize(1800, 864);
+    } else {
+      setImageSize(Number(thumbnail.getAttribute('width')) || thumbnail.naturalWidth,
+                   Number(thumbnail.getAttribute('height')) || thumbnail.naturalHeight);
+    }
+    if (paperViewer && thumbnail.classList.contains('nsfc-p-sheet')) {
+      const position = getComputedStyle(paperViewer.querySelector('.nsfc-p-picture-link'));
       stage.style.setProperty('--paper-column', position.getPropertyValue('--paper-column'));
       stage.style.setProperty('--paper-row', position.getPropertyValue('--paper-row'));
-      stage.style.backgroundImage = 'url(' + JSON.stringify(thumbnail.currentSrc || thumbnail.src) + ')';
+      stage.setAttribute('data-sheet', '');
     }
-    image.decode().then(() => {
+    stage.style.backgroundImage = 'url(' + JSON.stringify(thumbnail.currentSrc || thumbnail.src) + ')';
+
+    function reveal() {
       if (image.parentElement !== stage) return;
+      setImageSize(image.naturalWidth, image.naturalHeight);
       stage.removeAttribute('data-loading');
       stage.style.removeProperty('background-image');
-    }).catch(() => {
-      if (image.parentElement !== stage) return;
-      caption.append('（高清图暂未载入，可关闭后重试）');
-    });
+    }
+    function failed() {
+      if (image.parentElement === stage) caption.append('（高清图暂未载入，可关闭后重试）');
+    }
+    if (typeof image.decode === 'function') {
+      image.src = href;
+      image.decode().then(reveal, failed);
+    } else {
+      image.onload = reveal;
+      image.onerror = failed;
+      image.src = href;
+    }
   }
 
   document.querySelectorAll(triggers).forEach(link => {
@@ -60,16 +77,7 @@
     caption.textContent = paperViewer
       ? paperViewer.querySelector('.nsfc-p-caption-title').textContent
       : link.dataset.lightbox || link.closest('figure').querySelector('figcaption').textContent;
-    if (paperViewer) {
-      image.src = link.href;
-      loadPaper(image, thumbnail, paperViewer.querySelector('.nsfc-p-picture-link'));
-    } else {
-      setImageSize(thumbnail.naturalWidth || thumbnail.width, thumbnail.naturalHeight || thumbnail.height);
-      image.addEventListener('load', () => {
-        if (image.parentElement === stage) setImageSize(image.naturalWidth, image.naturalHeight);
-      });
-      image.src = link.href;
-    }
+    openImage(image, thumbnail, paperViewer, link.href);
     if (original) {
       original.href = link.href;
       original.hidden = !link.hasAttribute('data-lightbox');

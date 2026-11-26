@@ -53,12 +53,29 @@
 
     showPreview(rows[0]);
     if (!sheetFailed) {
-      sheet.decode().then(() => {
-        sheetReady = true;
-        if (sheet.parentElement === imageLink) setPreviewState('ready');
-      }).catch(() => {
+      function useOriginal() {
         sheetFailed = true;
         if (sheet.parentElement === imageLink) showPreview(rows[current]);
+      }
+      function decodeSheet() {
+        sheet.decode().then(() => {
+          sheetReady = true;
+          if (sheet.parentElement === imageLink) setPreviewState('ready');
+        }).catch(useOriginal);
+      }
+      if (sheet.complete) {
+        if (sheet.naturalWidth) decodeSheet();
+        else useOriginal();
+      } else {
+        sheet.addEventListener('load', decodeSheet, {once: true});
+        sheet.addEventListener('error', useOriginal, {once: true});
+      }
+      // Start warming the previews as soon as a visitor uses the results navigation.
+      document.querySelectorAll('a[href="#results"], a[href="#paper-results"]').forEach(link => {
+        const warm = () => { sheet.loading = 'eager'; };
+        for (const type of ['pointerenter', 'focus', 'click']) {
+          link.addEventListener(type, warm, {once: true});
+        }
       });
     }
 
