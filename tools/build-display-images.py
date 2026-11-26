@@ -27,7 +27,7 @@ def save_image(image, destination, **options):
 def build_photos(directory, widths, quality):
     previews = directory / "previews"
     previews.mkdir(exist_ok=True)
-    for source in sorted(directory.glob("*.jpg")):
+    for source in sorted(path for path in directory.iterdir() if path.suffix.lower() in {".jpg", ".png"}):
         with Image.open(source) as original:
             photo = ImageOps.exif_transpose(original).convert("RGB")
         for target in widths:
